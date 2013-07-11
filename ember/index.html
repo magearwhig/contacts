@@ -12,13 +12,21 @@
                 <div class="row">
                     <div class="span12">
                         <h1>Contacts</h1>
+                        <strong>{{toMeet}}</strong> {{contactLabel}} left to meet
                     </div>
                 </div>
                 <div class="row">
-                    {{#each controller}}
+                    {{#each controller itemController="contact"}}
                         <div class="span6">
                             <div {{bindAttr class=":contact haveMet:havemet"}}>
-                                <a href="">{{firstName}} {{lastName}}</a>
+                                <h4>{{firstName}} {{lastName}}</h4>
+                                <div><label>{{view Ember.Checkbox checkedBinding="haveMet"}} I have met this contact</label></div>
+                                <address>
+                                    <strong>Twitter, Inc.</strong><br>
+                                    795 Folsom Ave, Suite 600<br>
+                                    San Francisco, CA 94107<br>
+                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                                </address>
                             </div>
                         </div>
                     {{/each}}
@@ -45,5 +53,6 @@
         <script src="js/models/store.js"></script>
         <script src="js/models/contact.js"></script>
         <script src="js/controllers/contacts_controller.js"></script>
+        <script src="js/controllers/contact_controller.js"></script>
     </body>
 </html>
