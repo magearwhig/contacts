@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <title>Contacts - emberjs</title>
+    </head>
+    <body>
+        <script type="text/x-handlebars" data-template-name="contacts">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <h1>Contacts</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    {{#each controller}}
+                        <div class="span6">
+                            <div {{bindAttr class=":contact haveMet:havemet"}}>
+                                <a href="">{{firstName}} {{lastName}}</a>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="row">
+                    <div class="span12">
+                        {{view Ember.TextField id="new-contact-first" placeholder="First Name" valueBinding="newContactFirstName" action="createContact"}}
+                        {{view Ember.TextField id="new-contact-last" placeholder="Last Name" valueBinding="newContactLastName" action="createContact"}}
+                    </div>
+                </div>
+                <div class="row addcontact">
+                    <div class="span122">
+                        <a class="btn btn-primary" {{action "createContact" on="click"}}>Add Contact</a>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="js/libs/handlebars.js"></script>
+        <script src="js/libs/ember.min.js"></script>
+        <script src="js/libs/ember-data-latest.min.js"></script>
+        <script src="js/application.js"></script>
+        <script src="js/router.js"></script>
+        <script src="js/models/store.js"></script>
+        <script src="js/models/contact.js"></script>
+        <script src="js/controllers/contacts_controller.js"></script>
+    </body>
+</html>
