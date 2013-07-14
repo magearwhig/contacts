@@ -14,3 +14,7 @@ body {
 .addcontact {
     margin-bottom: 1em;
 }
+
+a.selected {
+    font-weight: bold;
+}

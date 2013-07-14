@@ -12,25 +12,13 @@
                 <div class="row">
                     <div class="span12">
                         <h1>Contacts</h1>
-                        <strong>{{toMeet}}</strong> {{contactLabel}} left to meet
+                        <strong>{{toMeet}}</strong> {{contactLabel}} left to meet | <strong>show:</strong> 
+                        {{#linkTo 'contacts.index' activeClass="selected"}}all{{/linkTo}}
+                        {{#linkTo 'contacts.havemet' activeClass="selected"}}have met{{/linkTo}}
+                        {{#linkTo 'contacts.havenotmet' activeClass="selected"}}have not met{{/linkTo}}
                     </div>
                 </div>
-                <div class="row">
-                    {{#each controller itemController="contact"}}
-                        <div class="span6">
-                            <div {{bindAttr class=":contact haveMet:havemet"}}>
-                                <h4>{{firstName}} {{lastName}}</h4>
-                                <div><label>{{view Ember.Checkbox checkedBinding="haveMet"}} I have met this contact</label></div>
-                                <address>
-                                    <strong>Twitter, Inc.</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address>
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
+                {{outlet}}
                 <div class="row">
                     <div class="span12">
                         {{view Ember.TextField id="new-contact-first" placeholder="First Name" valueBinding="newContactFirstName" action="createContact"}}
@@ -44,15 +32,43 @@
                 </div>
             </div>
         </script>
+        <script type="text/x-handlebars" data-template-name="contacts/index">
+            <div class="row">
+                {{#each controller itemController="contact"}}
+                    <div class="span6">
+                        <div {{bindAttr class=":contact haveMet:havemet isEditing:editing"}}>
+                            {{#if isEditing}}
+                                {{view Ember.TextField valueBinding="firstName" action="editContact"}}
+                                {{view Ember.TextField valueBinding="lastName" action="editContact"}}
+                            {{else}}
+                                {{#view Contacts.displayContact}}
+                                    <h4>{{firstName}} {{lastName}}</h4>
+                                    <div><label>{{view Ember.Checkbox checkedBinding="haveMet"}} I have met this contact</label></div>
+                                    <address>
+                                        <strong>Twitter, Inc.</strong><br>
+                                        795 Folsom Ave, Suite 600<br>
+                                        San Francisco, CA 94107<br>
+                                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                                    </address>
+                                    <button class="btn btn-danger" {{action "deleteContact"}}>Delete Contact</button>
+                                {{/view}}
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="js/libs/handlebars.js"></script>
         <script src="js/libs/ember.min.js"></script>
         <script src="js/libs/ember-data-latest.min.js"></script>
+        <script src="js/libs/localstorage_adapter.js"></script>
         <script src="js/application.js"></script>
         <script src="js/router.js"></script>
         <script src="js/models/store.js"></script>
         <script src="js/models/contact.js"></script>
         <script src="js/controllers/contacts_controller.js"></script>
         <script src="js/controllers/contact_controller.js"></script>
+        <script src="js/views/display_view.js"></script>
     </body>
 </html>

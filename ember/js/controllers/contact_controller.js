@@ -1,5 +1,24 @@
 Contacts.ContactController = Ember.ObjectController.extend({
-    haveMet: function(key, value){
+
+    isEditing: false,
+
+    deleteContact: function() {
+        var model = this.get('model');
+        model.deleteRecord();
+        model.save();
+    },
+
+    editContact: function() {
+        var model = this.get('model');
+        var firstName = this.get('firstName');
+        if (!firstName.trim()) { return; }
+        var lastName = this.get('lastName');
+        if (!lastName.trim()) { return; }
+        model.save();
+        this.set('isEditing', false);
+    },
+
+    haveMet: function(key, value) {
 
         var model = this.get('model');
 
@@ -14,4 +33,5 @@ Contacts.ContactController = Ember.ObjectController.extend({
         }
 
     }.property('model.haveMet')
+
 });
