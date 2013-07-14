@@ -9,11 +9,23 @@ Contacts.ContactsController = Ember.ArrayController.extend({
         var contact = Contacts.Contact.createRecord({
             firstName: firstName,
             lastName: lastName,
+            company: this.get('newContactCompany'),
+            address: this.get('newContactAddress'),
+            city: this.get('newContactCity'),
+            state: this.get('newContactState'),
+            zip: this.get('newContactZip'),
+            phone: this.get('newContactPhone'),
             haveMet: false
         });
 
         this.set('newContactFirstName', '');
         this.set('newContactLastName', '');
+        this.set('newContactCompany', '');
+        this.set('newContactAddress', '');
+        this.set('newContactCity', '');
+        this.set('newContactState', '');
+        this.set('newContactZip', '');
+        this.set('newContactPhone', '');
 
         contact.save();
     },

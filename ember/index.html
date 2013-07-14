@@ -22,7 +22,13 @@
                 <div class="row">
                     <div class="span12">
                         {{view Ember.TextField id="new-contact-first" placeholder="First Name" valueBinding="newContactFirstName" action="createContact"}}
-                        {{view Ember.TextField id="new-contact-last" placeholder="Last Name" valueBinding="newContactLastName" action="createContact"}}
+                        {{view Ember.TextField id="new-contact-last" placeholder="Last Name" valueBinding="newContactLastName" action="createContact"}}<br>
+                        {{view Ember.TextField id="new-contact-company" placeholder="Company" valueBinding="newContactCompany" action="createContact"}}<br>
+                        {{view Ember.TextField id="new-contact-address" placeholder="Address" valueBinding="newContactAddress" action="createContact"}}<br>
+                        {{view Ember.TextField id="new-contact-city" placeholder="City" valueBinding="newContactCity" action="createContact"}}
+                        {{view Ember.TextField id="new-contact-state" placeholder="State" valueBinding="newContactState" action="createContact"}}, 
+                        {{view Ember.TextField id="new-contact-zip" placeholder="Zip" valueBinding="newContactZip" action="createContact"}}<br>
+                        {{view Ember.TextField id="new-contact-phone" placeholder="Phone" valueBinding="newContactPhone" action="createContact"}}
                     </div>
                 </div>
                 <div class="row addcontact">
@@ -38,17 +44,23 @@
                     <div class="span6">
                         <div {{bindAttr class=":contact haveMet:havemet isEditing:editing"}}>
                             {{#if isEditing}}
-                                {{view Ember.TextField valueBinding="firstName" action="editContact"}}
-                                {{view Ember.TextField valueBinding="lastName" action="editContact"}}
+                                {{view Ember.TextField valueBinding="firstName" placeholder="First Name" action="editContact"}}
+                                {{view Ember.TextField valueBinding="lastName" action="editContact" placeholder="Last Name"}}<br>
+                                {{view Ember.TextField valueBinding="company" action="editContact" placeholder="Company"}}<br>
+                                {{view Ember.TextField valueBinding="address" action="editContact" placeholder="Address"}}<br>
+                                {{view Ember.TextField valueBinding="city" action="editContact" placeholder="City"}}
+                                {{view Ember.TextField valueBinding="state" action="editContact" placeholder="State"}},
+                                {{view Ember.TextField valueBinding="zip" action="editContact" placeholder="Zip"}}<br>
+                                {{view Ember.TextField valueBinding="phone" action="editContact" placeholder="Phone"}}
                             {{else}}
                                 {{#view Contacts.displayContact}}
                                     <h4>{{firstName}} {{lastName}}</h4>
                                     <div><label>{{view Ember.Checkbox checkedBinding="haveMet"}} I have met this contact</label></div>
                                     <address>
-                                        <strong>Twitter, Inc.</strong><br>
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
-                                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                                        <strong>{{company}}</strong><br>
+                                        {{address}}<br>
+                                        {{city}}, {{state}} {{zip}}<br>
+                                        <abbr title="Phone">P:</abbr> {{phone}}
                                     </address>
                                     <button class="btn btn-danger" {{action "deleteContact"}}>Delete Contact</button>
                                 {{/view}}
