@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <title>Contacts - emberjs</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h1>Contacts</h1>
+                    <strong>{{toMeet}}</strong> {{contactLabel}} left to meet | <strong>show:</strong> 
+                    {{#linkTo 'contacts.index' activeClass="selected"}}all{{/linkTo}}
+                    {{#linkTo 'contacts.havemet' activeClass="selected"}}have met{{/linkTo}}
+                    {{#linkTo 'contacts.havenotmet' activeClass="selected"}}have not met{{/linkTo}}
+                </div>
+            </div>
+            <div class="row" data-bind="foreach: contacts">
+                <div class="span6">
+                    <div class="contact" data-bind="css: { havemet:haveMet }">
+                        <h4><span data-bind="text: firstName"></span> <span data-bind="text: lastName"></span></h4>
+                        <div><label>I have met this contact</label></div>
+                        <address>
+                            <strong><span data-bind="text: company"></span></strong><br>
+                            <span data-bind="text: address"></span><br>
+                            <span data-bind="text: city"></span>, <span data-bind="text: state"></span> <span data-bind="text: zip"></span><br>
+                            <abbr title="Phone">P:</abbr> <span data-bind="text: phone"></span>
+                        </address>
+                        <button class="btn btn-danger" data-bind="click: $root.remove">Delete Contact</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <input type="text"id="new-contact-first" placeholder="First Name" data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: addContact">
+                    {{view Ember.TextField id="new-contact-first" placeholder="First Name" valueBinding="newContactFirstName" action="createContact"}}
+                    {{view Ember.TextField id="new-contact-last" placeholder="Last Name" valueBinding="newContactLastName" action="createContact"}}<br>
+                    {{view Ember.TextField id="new-contact-company" placeholder="Company" valueBinding="newContactCompany" action="createContact"}}<br>
+                    {{view Ember.TextField id="new-contact-address" placeholder="Address" valueBinding="newContactAddress" action="createContact"}}<br>
+                    {{view Ember.TextField id="new-contact-city" placeholder="City" valueBinding="newContactCity" action="createContact"}}
+                    {{view Ember.TextField id="new-contact-state" placeholder="State" valueBinding="newContactState" action="createContact"}}, 
+                    {{view Ember.TextField id="new-contact-zip" placeholder="Zip" valueBinding="newContactZip" action="createContact"}}<br>
+                    {{view Ember.TextField id="new-contact-phone" placeholder="Phone" valueBinding="newContactPhone" action="createContact"}}
+                </div>
+            </div>
+            <div class="row addcontact">
+                <div class="span122">
+                    <a class="btn btn-primary" {{action "createContact" on="click"}}>Add Contact</a>
+                </div>
+            </div>
+        </div>
+        <script src="js/libs/knockout-2.3.0.js"></script>
+        <script src="js/application.js"></script>
+    </body>
+</html>
