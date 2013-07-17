@@ -18,3 +18,8 @@ body {
 a.selected {
     font-weight: bold;
 }
+
+hr {
+    background: #fff;
+    padding: .1em;
+}

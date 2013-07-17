@@ -12,28 +12,30 @@
                 <div class="row">
                     <div class="span12">
                         <h1>Contacts</h1>
-                        <strong>{{toMeet}}</strong> {{contactLabel}} left to meet | <strong>show:</strong> 
-                        {{#linkTo 'contacts.index' activeClass="selected"}}all{{/linkTo}}
-                        {{#linkTo 'contacts.havemet' activeClass="selected"}}have met{{/linkTo}}
-                        {{#linkTo 'contacts.havenotmet' activeClass="selected"}}have not met{{/linkTo}}
+                        <ul class="nav nav-pills">
+                            {{#linkTo 'contacts.index' tagName='li' href=false}}{{#linkTo 'contacts.index' activeClass="selected"}}all{{/linkTo}}{{/linkTo}}
+                            {{#linkTo 'contacts.havemet' tagName='li' href=false}}{{#linkTo 'contacts.havemet' activeClass="selected"}}have met{{/linkTo}}{{/linkTo}}
+                            {{#linkTo 'contacts.havenotmet' tagName='li' href=false}}{{#linkTo 'contacts.havenotmet' activeClass="selected"}}have not met{{/linkTo}}{{/linkTo}}
+                        </ul>
+                        <div class="alert alert-info"><strong>{{toMeet}}</strong> {{contactLabel}} left to meet</div> 
                     </div>
                 </div>
                 {{outlet}}
                 <div class="row">
                     <div class="span12">
-                        {{view Ember.TextField id="new-contact-first" placeholder="First Name" valueBinding="newContactFirstName" action="createContact"}}
-                        {{view Ember.TextField id="new-contact-last" placeholder="Last Name" valueBinding="newContactLastName" action="createContact"}}<br>
-                        {{view Ember.TextField id="new-contact-company" placeholder="Company" valueBinding="newContactCompany" action="createContact"}}<br>
-                        {{view Ember.TextField id="new-contact-address" placeholder="Address" valueBinding="newContactAddress" action="createContact"}}<br>
-                        {{view Ember.TextField id="new-contact-city" placeholder="City" valueBinding="newContactCity" action="createContact"}}
-                        {{view Ember.TextField id="new-contact-state" placeholder="State" valueBinding="newContactState" action="createContact"}}, 
-                        {{view Ember.TextField id="new-contact-zip" placeholder="Zip" valueBinding="newContactZip" action="createContact"}}<br>
-                        {{view Ember.TextField id="new-contact-phone" placeholder="Phone" valueBinding="newContactPhone" action="createContact"}}
-                    </div>
-                </div>
-                <div class="row addcontact">
-                    <div class="span122">
-                        <a class="btn btn-primary" {{action "createContact" on="click"}}>Add Contact</a>
+                        <hr>
+                        <div class="hero-unit">
+                            <div class="alert"><strong>add a contact to start</strong> you only need a first name and last name, hit enter at any time</div>
+                            {{view Ember.TextField id="new-contact-first" placeholder="First Name" valueBinding="newContactFirstName" action="createContact"}}
+                            {{view Ember.TextField id="new-contact-last" placeholder="Last Name" valueBinding="newContactLastName" action="createContact"}}<br>
+                            {{view Ember.TextField id="new-contact-company" placeholder="Company" class="input-xxlarge" valueBinding="newContactCompany" action="createContact"}}<br>
+                            {{view Ember.TextField id="new-contact-address" placeholder="Address" class="input-xxlarge" valueBinding="newContactAddress" action="createContact"}}<br>
+                            {{view Ember.TextField id="new-contact-city" placeholder="City" valueBinding="newContactCity" action="createContact"}}
+                            {{view Ember.TextField id="new-contact-state" placeholder="State" class="input-mini" valueBinding="newContactState" action="createContact"}}, 
+                            {{view Ember.TextField id="new-contact-zip" placeholder="Zip" valueBinding="newContactZip" action="createContact"}}<br>
+                            {{view Ember.TextField id="new-contact-phone" placeholder="Phone" valueBinding="newContactPhone" action="createContact"}}
+                            <p><a class="btn btn-primary btn-large" {{action "createContact" on="click"}}>Add Contact</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,15 +46,17 @@
                     <div class="span6">
                         <div {{bindAttr class=":contact haveMet:havemet isEditing:editing"}}>
                             {{#if isEditing}}
+                                <div class="alert">click enter to save</div>
                                 {{view Ember.TextField valueBinding="firstName" placeholder="First Name" action="editContact"}}
                                 {{view Ember.TextField valueBinding="lastName" action="editContact" placeholder="Last Name"}}<br>
-                                {{view Ember.TextField valueBinding="company" action="editContact" placeholder="Company"}}<br>
-                                {{view Ember.TextField valueBinding="address" action="editContact" placeholder="Address"}}<br>
+                                {{view Ember.TextField valueBinding="company" class="input-xlarge" action="editContact" placeholder="Company"}}<br>
+                                {{view Ember.TextField valueBinding="address" action="editContact" class="input-xlarge" placeholder="Address"}}<br>
                                 {{view Ember.TextField valueBinding="city" action="editContact" placeholder="City"}}
-                                {{view Ember.TextField valueBinding="state" action="editContact" placeholder="State"}},
+                                {{view Ember.TextField class="input-mini" valueBinding="state" action="editContact" placeholder="State"}},
                                 {{view Ember.TextField valueBinding="zip" action="editContact" placeholder="Zip"}}<br>
                                 {{view Ember.TextField valueBinding="phone" action="editContact" placeholder="Phone"}}
                             {{else}}
+                                <div class="alert">double-click the contact to edit</div>
                                 {{#view Contacts.displayContact}}
                                     <h4>{{firstName}} {{lastName}}</h4>
                                     <div><label>{{view Ember.Checkbox checkedBinding="haveMet"}} I have met this contact</label></div>
