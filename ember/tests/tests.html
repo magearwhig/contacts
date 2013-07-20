@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Tests</title>
+        <link rel="stylesheet" href="mocha.css" />
+    </head>
+    <body>
+        <div id="mocha"></div>
+        <script src="mocha.js"></script>
+        <script src="/testem.js"></script>
+        <script src="expect.js"></script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="../js/libs/handlebars.js"></script>
+        <script src="../js/libs/ember.min.js"></script>
+        <script src="../js/libs/ember-data-latest.min.js"></script>
+        <script src="../js/libs/localstorage_adapter.js"></script>
+        <script src="../js/application.js"></script>
+        <script src="../js/router.js"></script>
+        <script src="../js/models/store.js"></script>
+        <script src="../js/models/contact.js"></script>
+        <script src="../js/controllers/contacts_controller.js"></script>
+        <script src="../js/controllers/contact_controller.js"></script>
+        <script src="../js/views/display_view.js"></script>
+        <script>
+            mocha.setup({
+                ui: 'bdd'
+            });
+        </script>
+        <script src="contact_spec.js"></script>
+        <script>mocha.run();</script>
+    </body>
+</html>

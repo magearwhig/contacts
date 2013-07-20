@@ -7,6 +7,9 @@ Contacts.Contact = DS.Model.extend({
     state: DS.attr('string'),
     zip: DS.attr('string'),
     phone: DS.attr('string'),
-    haveMet: DS.attr('boolean')
+    haveMet: DS.attr('boolean'),
+    fullName: function(){
+        return this.get('firstName') + ' ' + this.get('lastName');
+    }.property('firstName', 'lastName')
 });
 
