@@ -10,6 +10,9 @@ Contacts.Contact = DS.Model.extend({
     haveMet: DS.attr('boolean'),
     fullName: function(){
         return this.get('firstName') + ' ' + this.get('lastName');
+    }.property('firstName', 'lastName'),
+    initials: function(){
+        return this.get('firstName').substring(0,1) + this.get('lastName').substring(0,1);
     }.property('firstName', 'lastName')
 });
 
