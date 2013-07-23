@@ -4,17 +4,18 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/styles.css">
-        <title>Contacts - emberjs</title>
+        <title>Contacts - knockoutjs</title>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="span12">
                     <h1>Contacts</h1>
-                    <strong>{{toMeet}}</strong> {{contactLabel}} left to meet | <strong>show:</strong> 
-                    {{#linkTo 'contacts.index' activeClass="selected"}}all{{/linkTo}}
-                    {{#linkTo 'contacts.havemet' activeClass="selected"}}have met{{/linkTo}}
-                    {{#linkTo 'contacts.havenotmet' activeClass="selected"}}have not met{{/linkTo}}
+                    <ul class="nav nav-pills">
+                        <li><a href="">all</a></li>
+                        <li><a href="">have met</a></li>
+                        <li><a href="">have not met</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="row" data-bind="foreach: contacts">
@@ -34,24 +35,18 @@
             </div>
             <div class="row">
                 <div class="span12">
-                    <input type="text"id="new-contact-first" placeholder="First Name" data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: addContact">
-                    {{view Ember.TextField id="new-contact-first" placeholder="First Name" valueBinding="newContactFirstName" action="createContact"}}
-                    {{view Ember.TextField id="new-contact-last" placeholder="Last Name" valueBinding="newContactLastName" action="createContact"}}<br>
-                    {{view Ember.TextField id="new-contact-company" placeholder="Company" valueBinding="newContactCompany" action="createContact"}}<br>
-                    {{view Ember.TextField id="new-contact-address" placeholder="Address" valueBinding="newContactAddress" action="createContact"}}<br>
-                    {{view Ember.TextField id="new-contact-city" placeholder="City" valueBinding="newContactCity" action="createContact"}}
-                    {{view Ember.TextField id="new-contact-state" placeholder="State" valueBinding="newContactState" action="createContact"}}, 
-                    {{view Ember.TextField id="new-contact-zip" placeholder="Zip" valueBinding="newContactZip" action="createContact"}}<br>
-                    {{view Ember.TextField id="new-contact-phone" placeholder="Phone" valueBinding="newContactPhone" action="createContact"}}
+                    <input type="text"id="new-contact-first" placeholder="First Name" data-bind="value: newFirstName, valueUpdate: 'afterkeydown', enterKey: addContact">
+                    <input type="text"id="new-contact-last" placeholder="Last Name" data-bind="value: newLastName, valueUpdate: 'afterkeydown', enterKey: addContact">
                 </div>
             </div>
             <div class="row addcontact">
                 <div class="span122">
-                    <a class="btn btn-primary" {{action "createContact" on="click"}}>Add Contact</a>
+                    <a class="btn btn-primary">Add Contact</a>
                 </div>
             </div>
         </div>
         <script src="js/libs/knockout-2.3.0.js"></script>
-        <script src="js/application.js"></script>
+        <script src="js/libs/underscore.js"></script>
+        <script src="js/contacts.min.js"></script>
     </body>
 </html>
