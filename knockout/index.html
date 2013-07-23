@@ -16,6 +16,7 @@
                         <li><a href="">have met</a></li>
                         <li><a href="">have not met</a></li>
                     </ul>
+                    <div class="alert alert-info"><strong>{{toMeet}}</strong> {{contactLabel}} left to meet</div> 
                 </div>
             </div>
             <div class="row" data-bind="foreach: contacts">
@@ -35,13 +36,13 @@
             </div>
             <div class="row">
                 <div class="span12">
-                    <input type="text"id="new-contact-first" placeholder="First Name" data-bind="value: newFirstName, valueUpdate: 'afterkeydown', enterKey: addContact">
-                    <input type="text"id="new-contact-last" placeholder="Last Name" data-bind="value: newLastName, valueUpdate: 'afterkeydown', enterKey: addContact">
-                </div>
-            </div>
-            <div class="row addcontact">
-                <div class="span122">
-                    <a class="btn btn-primary">Add Contact</a>
+                    <hr>
+                    <div class="hero-unit">
+                        <div class="alert"><strong>add a contact to start</strong> you only need a first name and last name, hit enter at any time</div>
+                        <input type="text"id="new-contact-first" placeholder="First Name" data-bind="value: newFirstName, valueUpdate: 'afterkeydown', enterKey: addContact">
+                        <input type="text"id="new-contact-last" placeholder="Last Name" data-bind="value: newLastName, valueUpdate: 'afterkeydown', enterKey: addContact">
+                        <p><a class="btn btn-primary btn-large" {{action "createContact" on="click"}}>Add Contact</a></p>
+                    </div>
                 </div>
             </div>
         </div>
