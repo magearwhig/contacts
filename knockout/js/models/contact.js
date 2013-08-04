@@ -1,5 +1,6 @@
 function contact(options) {
     var defaults = {
+        editing: false,
         firstName: "",
         lastName: "",
         haveMet: false,
@@ -12,6 +13,15 @@ function contact(options) {
     };
     var args = _.extend(defaults, options);
     var self = this;
+
+    self.editContact = function(){
+        self.editing(true);
+    }
+
+    self.doneEditing = function(){
+        self.editing(false);
+    }
+
     self.firstName = ko.observable(args.firstName);
     self.lastName = ko.observable(args.lastName);
     self.haveMet = ko.observable(args.haveMet);
@@ -21,6 +31,7 @@ function contact(options) {
     self.state = ko.observable(args.state);
     self.zip = ko.observable(args.zip);
     self.phone = ko.observable(args.phone);
+    self.editing = ko.observable(args.editing);
     self.fullName = ko.computed(function(){
         return self.firstName() + " " + self.lastName();
     }, self);
